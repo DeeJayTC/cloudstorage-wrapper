@@ -22,8 +22,17 @@ When the service is running you can access the open api spec via https://localho
 ## Usage
 
 To call the api you need to pass two header values
-* provider -> either dropbox, onedrive or sharepoint
-* accessToken -> the coresponding access token for the provider
+
+For provider selection
+```
+provider: dropbox | onedrive | sharepoint
+```
+
+For Authorization
+```
+either accessToken: <yourToken>
+or     authorization: bearer <yourToken>
+```
 
 The services does NOT handle authentication, you need to have a valid token to use it so you need to do the oauth token handling
 yourself. 
