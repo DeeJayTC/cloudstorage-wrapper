@@ -1,0 +1,22 @@
+#FROM mcr.microsoft.com/dotnet/sdk:6.0
+#ARG source
+#WORKDIR /app
+#EXPOSE 9118
+#COPY ${source:-obj/Docker/publish} .
+#ENTRYPOINT ["dotnet", "TCDev.CloudStorage.dll"]
+#
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+
+ENV ASPNETCORE_ENVIRONMENT=Prod
+
+WORKDIR /code/app
+
+COPY TCDev.CloudStorage.csproj .
+COPY Nuget.config .
+COPY Nuget.config /root/.nuget/NuGet/NuGet.config
+COPY Directory.Build.props .
+RUN dotnet restore
+
+RUN dotnet install dotnet-watch -g
+
+ENTRYPOINT dotnet watch run --no-restore

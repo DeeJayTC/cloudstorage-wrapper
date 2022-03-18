@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  teamworkcsp:
+    image: deejaytc/tcdev-csw:latest
+    build:
+      context: .
+      dockerfile: TCDev.CloudStorage/Dockerfile

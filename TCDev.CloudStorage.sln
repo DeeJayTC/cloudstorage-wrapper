@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudStorageWrapper", "TCDev.CloudStorage\TCDev.CloudStorage.csproj", "{303B1505-3346-4BC0-92D5-51AD28896EB9}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D9CF26C2-A708-400B-8F29-57856C20E606}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{303B1505-3346-4BC0-92D5-51AD28896EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{303B1505-3346-4BC0-92D5-51AD28896EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{303B1505-3346-4BC0-92D5-51AD28896EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{303B1505-3346-4BC0-92D5-51AD28896EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9CF26C2-A708-400B-8F29-57856C20E606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9CF26C2-A708-400B-8F29-57856C20E606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9CF26C2-A708-400B-8F29-57856C20E606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9CF26C2-A708-400B-8F29-57856C20E606}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E4C2F4B-454D-4730-ABD9-EEB211A54935}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>7.2</LangVersion>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <AssemblyName>TCDev.Cloudstorage</AssemblyName>
+    <RootNamespace>TCDev.Cloudstorage</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>TCDev.CloudStorage.xml</DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1701;1702;1705;1591;1573;1572;1701</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\Workspaces Teamwork Github\integrations-synthesis-csw\TCDev.CloudStorage\TCDev.CloudStorage.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Startup\Configs\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <PackageReference Include="Dropbox.Api" Version="6.25.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.56.0.2601" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Graph" Version="4.21.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.0" />
+  </ItemGroup>
+
+</Project>

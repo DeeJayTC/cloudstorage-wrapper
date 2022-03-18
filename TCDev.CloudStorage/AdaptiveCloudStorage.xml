@@ -1,0 +1,752 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Adaptive-CloudStorage</name>
+    </assembly>
+    <members>
+        <member name="T:AdaptiveCloudStorage.Controllers.AccountController">
+            <summary>
+            Account Controller for CSP requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.AccountController.Get(System.String)">
+            <summary>
+            Returns full info for the cloud storage provider accessible by the access_token
+            </summary>
+            <response code="200">OK</response> 
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.DrivesController">
+            <summary>
+            Account Controller for CSP requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.DrivesController.Get(System.String)">
+            <summary>
+            Returns available drives for the specified site
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderDriveInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderDriveInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the siteId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.DrivesController.GetDriveInfo(System.String,System.String)">
+            <summary>
+            Returns drive info for the specified drive ID
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderDriveInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderDriveInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.FilesController">
+            <summary>
+            Account Controller for CSP requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.GetFileDetails(System.String)">
+            <summary>
+            Returns full details for the file
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Uploads one or multiple files
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.UpdateFile(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads a new revision of the file (form encoded data)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.UpdateFileContent(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads the contents of a file (form encoded data)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.GetFileThumbnails(System.String,System.String)">
+            <summary>
+            Returns thumbnail images for the file
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.GetFileDownloadLinks(System.String)">
+            <summary>
+            Returns download links for the file
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.DeleteFile(System.String)">
+            <summary>
+            Deletes the file
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.GetFolderSearch(System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Searches all contents of the drive
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.CopyFile(System.String,System.String)">
+            <summary>
+            Creates a copy of the file and returns the newly created file details
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FilesController.CreateLink(System.String,System.String,System.String)">
+            <summary>
+            Creates a copy of the file and returns the newly created file details
+            </summary>
+            <returns> <see cref="T:System.String"/></returns>
+            <response code="200" cref="T:System.String">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the fileId or driveId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.FoldersController">
+            <summary>
+            Account Controller for CSP requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.GetFolderContents(System.String,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Returns a list of the folder contents
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.GetFolderContentsByPath(System.String,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Returns a list of the folder contents
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.GetFolderDetails(System.String,System.String)">
+            <summary>
+            Returns full details for the folder
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.GetFolderSearch(System.String,System.Boolean,System.String,System.Boolean,System.String)">
+            <summary>
+            Searches the given folder and its subfolders
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderFolderInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.CreateFolder(System.String,System.String,System.String)">
+            <summary>
+            Creates a new folder
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.DeleteFolder(System.String,System.String)">
+            <summary>
+            Deletes the folder
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.FoldersController.UploadFile(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Uploads one or multiple files to the folder
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderItem">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the folderId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.SitesController">
+            <summary>
+            Sites Controller
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.SitesController.Get(System.String)">
+            <summary>
+            Returns a list of sites (Sharepoint only)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.SitesController.GetSiteDetails(System.String,System.String)">
+            <summary>
+            Returns full details for the site  (Sharepoint only)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the siteId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.SitesController.GetSitesSearch(System.String,System.String)">
+            <summary>
+            Searches the available sites (Sharepoint only)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.SitesController.GetSiteDrives(System.String,System.String)">
+            <summary>
+            Returns available drives for the specified site (Sharepoint only)
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSiteInfo">OK</response>
+            <response code="401">If the given token is invalid, authentication failed</response>  
+            <response code="404">If nothing could be found for the siteId</response>  
+            <response code="501">If the integration is disabled for the provider</response>
+            <response code="503">If there is no implementation for the requested provider</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.SystemController">
+            <summary>
+            Account Controller for CSP requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.SystemController.Get">
+            <summary>
+            Returns a list of implemented providers, working functions for those and ad
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSystemState"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.ICloudStorageProviderSystemState">OK</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Controllers.HealthController">
+            <summary>
+            Retrieve System Health Data
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Controllers.HealthController.Get">
+            <summary>
+            Get information about system health, uptime and provider state
+            </summary>
+            <returns> <see cref="T:AdaptiveCloudStorage.Model.CSWSystemState"/></returns>
+            <response code="200" cref="T:AdaptiveCloudStorage.Model.CSWSystemState">OK</response>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.ApplicationBuilderExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> to add a Bot to the ASP.NET Core request execution pipeline.
+            </summary>
+            <seealso cref="T:AdaptiveCloudStorage.Extensions.ServiceCollectionExtensions"/>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.ApplicationBuilderExtensions.UseDropbox(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseDropbox -> Enable Dropbox Service to be used by the Framework
+            </summary>
+            <param name="applicationBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.ApplicationBuilderExtensions.UseSharePoint(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseSharePoint -> Enable SharePoint Service to be used by the Framework
+            </summary>
+            <param name="applicationBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.ApplicationBuilderExtensions.UseOneDrive(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseOneDrive -> Enable OneDrive Service to be used by the Framework
+            </summary>
+            <param name="applicationBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.ProviderRegistry">
+            <summary>
+            Tools for provider handling
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.ProviderRegistry.GetProviderByName(System.String)">
+            <summary>
+            Returns the type for the specific extension by using its name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.RequestExtension">
+            <summary>
+            Extend HTTPRequest with our own functions
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.RequestExtension.GetData(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Parse TWRequest Data from the Request
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.RequestExtension.IsValid(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Check if the request is valid
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.RequestExtension.GetProviderName(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Return ProviderName for the request
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.RequestExtension.GetExtraOptions(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Parse extra query parameters in the request
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.TWRequestData">
+            <summary>
+            Returns data specific to Teamwork Requests
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.TWRequestData.#ctor(Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="isValid"></param>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.TWRequestData.GetProvider">
+            <summary>
+            Get the Provider Instance the call is for
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Extensions.TWRequestData.GetProviderWithSites">
+            <summary>
+            Get the Provider Instance the call is for
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:AdaptiveCloudStorage.Extensions.TWRequestData.Request">
+            <summary>
+            Type of Provider the call is for
+            </summary>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.ExtraOptions">
+            <summary>
+            Retreives extra options passed in the Teamwork Requests
+            </summary>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extension class for cloud storage providers.
+            </summary>
+            <seealso cref="T:AdaptiveCloudStorage.Extensions.ApplicationBuilderExtensions"/>
+            <seealso cref="T:AdaptiveCloudStorage.Model.ICloudStorageProvider"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:AdaptiveCloudStorage.Extensions.ServiceCollectionExtensions.AddProvider``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{AdaptiveCloudStorage.Model.ICloudStorageProviderOptions})" -->
+        <!-- Badly formed XML comment ignored for member "M:AdaptiveCloudStorage.Extensions.ServiceCollectionExtensions.AddProviderWithSites``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{AdaptiveCloudStorage.Model.ICloudStorageProviderOptions})" -->
+        <member name="T:AdaptiveCloudStorage.Middleware.AuthenticationMiddleware">
+            <summary>
+            Handles authentication to csp
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.AuthenticationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Base Constructor
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.AuthenticationMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Main implementation for middleware
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Middleware.CSPProviderSelector">
+            <summary>
+            Handles authentication to csp
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.CSPProviderSelector.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Base Constructor
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.CSPProviderSelector.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Main implementation for middleware
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Middleware.RawRequestBodyFormatter">
+            <summary>
+            Formatter that allows content of type text/plain and application/octet stream
+            or no content type to be parsed to raw data. Allows for a single input parameter
+            in the form of:
+            
+            public string RawString([FromBody] string data)
+            public byte[] RawData([FromBody] byte[] data)
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.RawRequestBodyFormatter.CanRead(Microsoft.AspNetCore.Mvc.Formatters.InputFormatterContext)">
+            <summary>
+            Allow text/plain, application/octet-stream and no content type to
+            be processed
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.RawRequestBodyFormatter.ReadRequestBodyAsync(Microsoft.AspNetCore.Mvc.Formatters.InputFormatterContext)">
+            <summary>
+            Handle text/plain or no content type for string results
+            Handle application/octet-stream for byte[] results
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Middleware.ProviderDetectionServiceExtension">
+            <summary>
+            Extension for ProviderDetection Middleware
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.ProviderDetectionServiceExtension.UseTeamworkProviderDetection(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Enable Teamwork Provider Selector for CSP
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Middleware.ProviderDetectionService">
+            <summary>
+            Handles authentication to csp
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.ProviderDetectionService.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Base Constructor
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.ProviderDetectionService.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Main implementation for middleware
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Middleware.RateLimitMiddlewareException">
+            <summary>
+            Rate limit middleware to make sure we're properly checking against rate limits of third parties when trying to forward calls. 
+            Current setting is 1000 calls in 1 minute for the same accessToken
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.RateLimitMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,AdaptiveCloudStorage.Services.RateLimitService)">
+            <summary>
+            Base Constructor
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Middleware.RateLimitMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Main implementation for middleware
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Model.ICloudStorageProvider">
+            <summary>
+            Basic Interface listing all API Calls a CSP should provide
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetAccountInfoAsync(System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns account info
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetDriveInfoAsync(System.String,System.String)">
+            <summary>
+            Returns account info
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetAvailableDrivesAsync(System.String)">
+            <summary>
+            Returns account info
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFolderInfoAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns Folder Info
+            </summary>
+            <param name="accessToken"></param>
+            <param name="folderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFolderContentsAsync(System.String,System.String,System.Boolean,System.Boolean,System.Boolean,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns Folder contents
+            </summary>
+            <param name="accessToken"></param>
+            <param name="folderId"></param>
+            <param name="showFiles"></param>
+            <param name="includeMounted"></param>
+            <param name="includeMedia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFolderContentsByPathAsync(System.String,System.String,System.Boolean,System.Boolean,System.Boolean,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns Folder contents
+            </summary>
+            <param name="accessToken"></param>
+            <param name="path"></param>
+            <param name="showFiles"></param>
+            <param name="includeMounted"></param>
+            <param name="includeMedia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFolderContentsSearchAsync(System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns Folder contents by searching
+            </summary>
+            <param name="accessToken"></param>
+            <param name="folderId"></param>
+            <param name="showFiles"></param>
+            <param name="searchFor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFileInfoAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns file details
+            </summary>
+            <param name="accessToken"></param>
+            <param name="fileId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.GetFileThumbnailAsync(System.String,System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns file details
+            </summary>
+            <param name="accessToken"></param>
+            <param name="fileId"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.PostFile(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Upload new file to a folder
+            </summary>
+            <param name="accessToken"></param>
+            <param name="folderId"></param>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.PutFile(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Update file content
+            </summary>
+            <param name="accessToken"></param>
+            <param name="fileId"></param>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.DeleteFile(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Delete a file
+            </summary>
+            <param name="accessToken"></param>
+            <param name="fileId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.CreateFolder(System.String,System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            CreateFolder
+            </summary>
+            <param name="accessToken"></param>
+            <param name="folderId"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.CopyItem(System.String,System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            CopyItem
+            </summary>
+            <param name="accessToken"></param>
+            <param name="itemId"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProvider.CreateLink(System.String,System.String,System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            CopyItem
+            </summary>
+            <param name="accessToken"></param>
+            <param name="itemId"></param>
+            <param name="linkType"></param>
+            <param name="linkScope"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites">
+            <summary>
+            Basic Interface listing all API Calls a CSP with sites should provide
+            </summary>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites.GetSitesAsync(System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns all sites
+            </summary>
+            <param name="accessToken"></param>
+            <param name="extraOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites.GetSitesSearchAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns sites matching search criteria
+            </summary>
+            <param name="accessToken"></param>
+            <param name="searchFor"></param>
+            <param name="extraOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites.GetSiteInfoAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns site info
+            </summary>
+            <param name="accessToken"></param>
+            <param name="siteId"></param>
+            <param name="extraOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites.GetDrivesAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns drives for specified site
+            </summary>
+            <param name="accessToken"></param>
+            <param name="siteId"></param>
+            <param name="extraOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Model.ICloudStorageProviderWithSites.GetDriveInfoAsync(System.String,System.String,AdaptiveCloudStorage.Extensions.ExtraOptions)">
+            <summary>
+            Returns drive info
+            </summary>
+            <param name="accessToken"></param>
+            <param name="driveId"></param>
+            <param name="extraOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveCloudStorage.Services.RateLimitService.CheckRateGate(System.String)">
+            <summary>
+            Checks the rateGate for the given token
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TCDev.CloudStorage.Startup">
+            <summary>
+            Main Startup implementation
+            </summary>
+        </member>
+        <member name="M:TCDev.CloudStorage.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Startup class to handle app startup
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:TCDev.CloudStorage.Startup.Configuration">
+            <summary>
+            Holds the configuration implementation
+            </summary>
+        </member>
+        <member name="M:TCDev.CloudStorage.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            This method gets called by the runtime. Use this method to add services to the container.
+        </member>
+        <member name="M:TCDev.CloudStorage.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        </member>
+    </members>
+</doc>
