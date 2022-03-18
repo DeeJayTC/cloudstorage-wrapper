@@ -1,7 +1,9 @@
 ## Info
 TCDev CSW is a microservice that wraps cloud storage providers into a single API layout and a single point of contact. 
 You only need a valid API Key for each and can access Dropbox, OneDrive and Sharepoint by using the same API Scheme and you only
-have to implement one API in your product to integrate all three services. 
+have to implement one API in your product to integrate all three services. It was developed for Teamwork.com and is still being used today.
+
+If you run a SAAS app and want to implement either of the three, why don't you just implement all three at once? :)
 
 We're working on adding more providers soon. 
 
